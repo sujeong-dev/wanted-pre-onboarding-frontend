@@ -10,7 +10,6 @@ export default function SignUp() {
     id: '',
     pw: '',
   });
-  console.log(inputValue);
 
   const saveUserValue = (e) => {
     const { name, value } = e.target;
@@ -25,18 +24,16 @@ export default function SignUp() {
   const goToNext = (e) => {
     e.preventDefault();
     if (e.key === 'Enter' || e.target.nodeName === 'BUTTON') {
-      axios('https://pre-onboarding-selection-task.shop/auth/signup', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/json;charset=utf-8' },
-        data: { email: inputValue.id, password: inputValue.pw },
-      })
+      axios
+        .post('https://pre-onboarding-selection-task.shop/auth/signup', {
+          headers: { 'Content-Type': 'application/json;charset=utf-8' },
+          data: { email: inputValue.id, password: inputValue.pw },
+        })
         .then((response) => {
-          console.log(response);
           window.alert('회원가입이 완료되었습니다🎉');
           navigate('/signin');
         })
         .catch((error) => {
-          console.log(error);
           window.alert(error.response.data.message);
         });
     }

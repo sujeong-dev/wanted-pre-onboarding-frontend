@@ -19,10 +19,19 @@ export default function Main() {
       navigate('/signup');
     }
   };
+  const goToTodo = () => {
+    if (!!localStorage.getItem('access_token')) {
+      navigate('/todo');
+    } else {
+      alert('로그인이 필요한 서비스입니다.');
+      navigate('/signin');
+    }
+  };
   return (
     <>
       <button onClick={goToSignIn}>로그인</button>
       <button onClick={goToSignUp}>회원가입</button>
+      <button onClick={goToTodo}>TODO</button>
     </>
   );
 }
