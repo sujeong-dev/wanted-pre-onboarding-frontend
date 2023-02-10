@@ -1,21 +1,26 @@
 import React from 'react';
+import styled from 'styled-components';
 
 export default function FormInput({
   testId,
   name,
   type,
   changeFunc,
-  keyupFunc,
   placeholder,
 }) {
   return (
-    <input
+    <Input
       data-testid={testId}
       name={name}
       type={type}
       onChange={changeFunc}
-      onKeyUp={keyupFunc}
       placeholder={placeholder}
     />
   );
 }
+
+const Input = styled.input`
+  width: 300px;
+  padding: 10px;
+  margin-bottom: 20px;
+`;

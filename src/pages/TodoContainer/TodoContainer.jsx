@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import TodoHeader from './TodoHeader';
-import TodoList from './TodoList';
+import TodoHeader from '../TodoHeader/TodoHeader';
+import TodoList from '../TodoList/TodoList';
 
 const FILTERS = ['all', 'active', 'completed'];
 

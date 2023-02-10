@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Main from './pages/Main';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
-import TodoContainer from './pages/TodoContainer';
+import Main from './pages/Main/Main';
+import SignIn from './pages/SignIn/SignIn';
+import SignUp from './pages/SignUp/SignUp';
+import TodoContainer from './pages/TodoContainer/TodoContainer';
 
 export default function Router() {
   return (
