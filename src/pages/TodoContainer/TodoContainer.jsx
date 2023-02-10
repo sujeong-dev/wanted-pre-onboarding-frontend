@@ -2,18 +2,23 @@ import React, { useState } from 'react';
 import TodoHeader from '../TodoHeader/TodoHeader';
 import TodoList from '../TodoList/TodoList';
 
-const FILTERS = ['all', 'active', 'completed'];
+const FILTERS = [
+  { id: 0, title: 'all' },
+  { id: 1, title: 'active' },
+  { id: 2, title: 'completed' },
+];
 
 export default function TodoContainer() {
-  const [filter, setFilter] = useState(FILTERS[0]);
+  const [currentFilter, setCurrentFilter] = useState(0);
+
   return (
-    <div>
+    <>
       <TodoHeader
         filters={FILTERS}
-        currentFilter={filter}
-        onFilterChange={setFilter}
+        currentFilter={currentFilter}
+        onFilterChange={setCurrentFilter}
       />
-      <TodoList currentFilter={filter} />
-    </div>
+      <TodoList currentFilter={currentFilter} />
+    </>
   );
 }

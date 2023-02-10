@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
+import styled from 'styled-components';
+import TodoInput from '../../components/input/TodoInput';
 
 export default function Todo({ todoObj, onUpdate, onDelete }) {
   const { id, todo, isCompleted } = todoObj;
@@ -27,30 +29,89 @@ export default function Todo({ todoObj, onUpdate, onDelete }) {
   };
 
   return (
-    <li key={id}>
-      <input
+    <TodoLi key={id}>
+      <CheckBox
         type='checkbox'
         id={id}
         checked={isCompleted}
         onChange={handleChange}
       />
       {isModify ? (
-        <form>
-          <input type='text' value={text} onChange={handleTextChange} />
-          <button onClick={handleTextSubmit}>제출</button>
-          <button onClick={handleModifyCancel}>취소</button>
-        </form>
+        <Form onSubmit={handleTextSubmit}>
+          <TodoInput
+            testId='modify-input'
+            value={text}
+            changeFunc={handleTextChange}
+          />
+          <Button
+            type='submit'
+            data-testid='submit-button'
+            onClick={handleTextSubmit}
+          >
+            제출
+          </Button>
+          <Button
+            type='button'
+            data-testid='cancel-button'
+            onClick={handleModifyCancel}
+          >
+            취소
+          </Button>
+        </Form>
       ) : (
         <>
-          <label htmlFor={id}>{todo}</label>
-          <span>
-            <button onClick={handleModify}>수정</button>
-            <button onClick={handleDelete}>
+          <TodayWork htmlFor={id}>{todo}</TodayWork>
+          <Span>
+            <Button data-testid='modify-button' onClick={handleModify}>
+              수정
+            </Button>
+            <Button data-testid='delete-button' onClick={handleDelete}>
               <FaTrashAlt />
-            </button>
-          </span>
+            </Button>
+          </Span>
         </>
       )}
-    </li>
+    </TodoLi>
   );
 }
+
+const TodoLi = styled.li`
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  margin: 0.1rem 0;
+  color: var(--color-text);
+  background-color: var(--color-white);
+`;
+
+const CheckBox = styled.input`
+  width: 20px;
+  height: 20px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const TodayWork = styled.label`
+  flex: 1 1;
+  margin-left: 10px;
+  font-size: 20px;
+`;
+
+const Form = styled.form`
+  position: absolute;
+  left: 50px;
+`;
+
+const Button = styled.button`
+  background-color: var(--color-lightgrey);
+  opacity: 0.5;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+const Span = styled.span``;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormInput from '../../components/input/FormInput';
-import FormButton from '../../components/button/FormButton';
+import FormButton from '../../components/button/SignButton';
 import styled from 'styled-components';
 
 export default function SignUp() {
@@ -102,7 +102,7 @@ const InputInfo = styled.h2`
 `;
 
 const ValidatePw = styled.span`
-  color: var(--color-red);
+  color: var(--color-accent);
 `;
 
 const GoLoginContainer = styled.div`

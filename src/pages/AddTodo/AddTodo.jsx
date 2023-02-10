@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { HiOutlinePlusCircle } from 'react-icons/hi';
+import styled from 'styled-components';
+import TodoInput from '../../components/input/TodoInput';
 
 export default function AddTodo({ onAdd }) {
   const [text, setText] = useState('');
@@ -13,16 +15,28 @@ export default function AddTodo({ onAdd }) {
     setText('');
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type='text'
-        placeholder='오늘의 할 일'
+    <Form onSubmit={handleSubmit}>
+      <TodoInput
+        testId='new-todo-input'
+        placeholder='today to do'
         value={text}
-        onChange={handleChange}
+        changeFunc={handleChange}
       />
-      <button>
+      <Button data-testid='new-todo-add-button'>
         <HiOutlinePlusCircle />
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 }
+
+const Form = styled.form`
+  width: 100%;
+  display: flex;
+  padding: 1.4rem 1rem;
+  background-color: var(--color-bg-dark);
+`;
+
+const Button = styled.button`
+  font-size: 30px;
+  color: var(--color-darkgrey);
+`;

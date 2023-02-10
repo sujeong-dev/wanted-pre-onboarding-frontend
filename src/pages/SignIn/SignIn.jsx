@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import FormInput from '../../components/input/FormInput';
-import FormButton from '../../components/button/FormButton';
+import FormButton from '../../components/button/SignButton';
 import styled from 'styled-components';
 
 export default function SignIn() {

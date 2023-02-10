@@ -10,18 +10,10 @@ const GlobalStyle = createGlobalStyle`
   --color-lightgrey: #f5f5f5;
   --color-darkgrey: #666666;
   --color-darkblue: #588195;
-  --color-red: red;
   --color-text: #22243b;
-  --color-accent: #f16e03;
+  --color-accent: red;
   --color-white: white;
   --color-scrollbar: #aaa7a7;
-}
-
-  html.dark {
-  --color-bg-dark: #1a1c35;
-  --color-bg: #f5f5f5;
-  --color-grey: #666666;
-  --color-text: #fdfffd;
 }
 
 body {
@@ -37,7 +29,7 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  accent-color: var(--color-accent);
+  accent-color: var(--color-darkblue);
   background: rgb(81, 87, 111);
   background: linear-gradient(
     106deg,
@@ -62,6 +54,33 @@ body {
   * {
     box-sizing: border-box;
   }
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  button {
+    outline: none;
+    border: none;
+  }
+
+  ::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-darkblue);
+}
+
  
 `;
 export default GlobalStyle;

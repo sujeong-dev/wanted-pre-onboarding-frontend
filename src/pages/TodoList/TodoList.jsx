@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Todo from '../Todo/Todo';
 import AddTodo from '../AddTodo/AddTodo';
+import styled from 'styled-components';
 
 export default function TodoList({ currentFilter }) {
   const [todos, setTodos] = useState([]);
-
   useEffect(() => {
     //todo get
     const accessToken = localStorage.getItem('access_token');
@@ -88,8 +88,8 @@ export default function TodoList({ currentFilter }) {
   const filteredTodos = getFilteredItems(todos, currentFilter);
 
   return (
-    <section>
-      <ul>
+    <Section>
+      <TodoBody>
         {filteredTodos.map((todo) => (
           <Todo
             key={todo.id}
@@ -98,18 +98,31 @@ export default function TodoList({ currentFilter }) {
             onDelete={handleDelete}
           />
         ))}
-      </ul>
+      </TodoBody>
       <AddTodo onAdd={handleAdd} />
-    </section>
+    </Section>
   );
 }
 
 function getFilteredItems(todos, filter) {
-  if (filter === 'all') {
+  if (filter === 0) {
     return todos;
-  } else if (filter === 'active') {
+  } else if (filter === 1) {
     return todos.filter((todo) => todo.isCompleted === false);
   } else {
     return todos.filter((todo) => todo.isCompleted === true);
   }
 }
+
+const Section = styled.section`
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-bg);
+`;
+
+const TodoBody = styled.ul`
+  flex: 1 1 auto;
+  overflow-y: auto;
+`;
