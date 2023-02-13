@@ -1,33 +1,22 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ChoiceButton from '../../components/button/ChoiceButton';
 import styled from 'styled-components';
 
 export default function Main() {
-  const navigate = useNavigate();
-
   return (
     <MainContainer>
       <Title>DAILY TODO</Title>
       <ChoiceMain>
-        <ChoiceButton
-          title='로그인'
-          clickFunc={() => {
-            navigate('/signin');
-          }}
-        />
-        <ChoiceButton
-          title='가입하기'
-          clickFunc={() => {
-            navigate('/signup');
-          }}
-        />
-        <ChoiceButton
-          title='TODO'
-          clickFunc={() => {
-            navigate('/todo');
-          }}
-        />
+        <Linkto to='/signin'>
+          <ChoiceButton title='로그인' />
+        </Linkto>
+        <Linkto to='/signup'>
+          <ChoiceButton title='가입하기' />
+        </Linkto>
+        <Linkto to='/todo'>
+          <ChoiceButton title='TODO' />
+        </Linkto>
       </ChoiceMain>
     </MainContainer>
   );
@@ -51,4 +40,10 @@ const Title = styled.h1`
   font-weight: 600;
   text-align: center;
   color: var(--color-darkblue);
+`;
+
+const Linkto = styled(Link)`
+  &:hover {
+    cursor: pointer;
+  }
 `;
