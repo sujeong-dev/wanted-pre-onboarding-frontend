@@ -37,6 +37,9 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 30px;
   color: var(--color-darkgrey);
 `;

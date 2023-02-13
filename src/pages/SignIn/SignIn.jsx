@@ -4,6 +4,7 @@ import { userApis } from '../../apis/api/userApis';
 import FormInput from '../../components/input/FormInput';
 import FormButton from '../../components/button/SignButton';
 import styled from 'styled-components';
+import { useEffect } from 'react';
 
 export default function SignIn() {
   const [inputValue, setInputValue] = useState({
@@ -33,6 +34,13 @@ export default function SignIn() {
   const goToSignup = () => {
     navigate('/signup');
   };
+
+  useEffect(() => {
+    if (!!localStorage.getItem('access_token')) {
+      alert('이미 로그인 하셨습니다.');
+      navigate('/todo');
+    }
+  }, [navigate]);
 
   return (
     <>

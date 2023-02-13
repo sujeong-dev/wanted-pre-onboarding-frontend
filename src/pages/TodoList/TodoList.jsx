@@ -7,10 +7,12 @@ import styled from 'styled-components';
 export default function TodoList({ currentFilter }) {
   const [todos, setTodos] = useState([]);
   useEffect(() => {
-    //todo get
-    todoApis.getTodo().then((response) => {
-      setTodos(response);
-    });
+    if (!!localStorage.getItem('access_token')) {
+      //todo get
+      todoApis.getTodo().then((response) => {
+        setTodos(response);
+      });
+    }
   }, []);
 
   //todo create

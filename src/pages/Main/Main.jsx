@@ -5,38 +5,29 @@ import styled from 'styled-components';
 
 export default function Main() {
   const navigate = useNavigate();
-  const hasToken = !!localStorage.getItem('access_token');
-  const goToSignIn = () => {
-    if (hasToken) {
-      alert('이미 로그인 하셨습니다.');
-      navigate('/todo');
-    } else {
-      navigate('/signin');
-    }
-  };
-  const goToSignUp = () => {
-    if (hasToken) {
-      alert('이미 로그인 하셨습니다.');
-      navigate('/todo');
-    } else {
-      navigate('/signup');
-    }
-  };
-  const goToTodo = () => {
-    if (hasToken) {
-      navigate('/todo');
-    } else {
-      alert('로그인이 필요한 서비스입니다.');
-      navigate('/signin');
-    }
-  };
+
   return (
     <MainContainer>
       <Title>DAILY TODO</Title>
       <ChoiceMain>
-        <ChoiceButton title='로그인' clickFunc={goToSignIn} />
-        <ChoiceButton title='가입하기' clickFunc={goToSignUp} />
-        <ChoiceButton title='TODO' clickFunc={goToTodo} />
+        <ChoiceButton
+          title='로그인'
+          clickFunc={() => {
+            navigate('/signin');
+          }}
+        />
+        <ChoiceButton
+          title='가입하기'
+          clickFunc={() => {
+            navigate('/signup');
+          }}
+        />
+        <ChoiceButton
+          title='TODO'
+          clickFunc={() => {
+            navigate('/todo');
+          }}
+        />
       </ChoiceMain>
     </MainContainer>
   );

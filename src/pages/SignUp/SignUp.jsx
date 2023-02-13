@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { userApis } from '../../apis/api/userApis';
 import FormInput from '../../components/input/FormInput';
@@ -32,6 +32,13 @@ export default function SignUp() {
   const goToLogin = () => {
     navigate('/signin');
   };
+
+  useEffect(() => {
+    if (!!localStorage.getItem('access_token')) {
+      alert('이미 로그인 하셨습니다.');
+      navigate('/todo');
+    }
+  }, [navigate]);
 
   return (
     <>
