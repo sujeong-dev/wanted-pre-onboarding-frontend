@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { userApis } from '../../apis/api/userApis';
 import FormInput from '../../components/input/FormInput';
 import FormButton from '../../components/button/SignButton';
 import styled from 'styled-components';
@@ -10,33 +10,25 @@ export default function SignIn() {
     id: '',
     pw: '',
   });
+  const { id, pw } = inputValue;
 
   const saveUserValue = (e) => {
     const { name, value } = e.target;
     const targetValues = { ...inputValue, [name]: value };
     setInputValue(targetValues);
   };
-  const isValidate = inputValue.id.includes('@') && inputValue.pw.length >= 8;
+  const isValidate = id.includes('@') && pw.length >= 8;
 
   const opacity = isValidate ? '1' : '0.5';
 
   const navigate = useNavigate();
   const goToNext = (e) => {
     e.preventDefault();
-    axios
-      .post(
-        'https://pre-onboarding-selection-task.shop/auth/signin',
-        { email: inputValue.id, password: inputValue.pw },
-        { headers: { 'Content-Type': 'application/json;charset=utf-8' } }
-      )
-      .then((response) => {
-        localStorage.setItem('access_token', response.data.access_token);
-        window.alert('반갑습니다 회원님 🎵');
-        navigate('/todo');
-      })
-      .catch((error) => {
-        window.alert(error.response.data.message);
-      });
+    userApis.signin({ email: id, password: pw }).then((response) => {
+      localStorage.setItem('access_token', response.access_token);
+      window.alert('반갑습니다 회원님 😊');
+      navigate('/todo');
+    });
   };
   const goToSignup = () => {
     navigate('/signup');
