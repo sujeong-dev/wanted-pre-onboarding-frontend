@@ -15,7 +15,7 @@ export default function TodoContainer() {
   const navigate = useNavigate();
   useEffect(() => {
     if (!!!localStorage.getItem('access_token')) {
-      window.alert('회원가입을 먼저 진행해주세요.');
+      window.alert('먼저 로그인을 진행해주세요.');
       navigate('/signin');
     }
   }, [navigate]);
