@@ -26,7 +26,6 @@ export default function SignIn() {
   const goToNext = (e) => {
     e.preventDefault();
     userApis.signin({ email: id, password: pw }).then((response) => {
-      localStorage.setItem('access_token', response.access_token);
       window.alert('반갑습니다 회원님 😊');
       navigate('/todo');
     });

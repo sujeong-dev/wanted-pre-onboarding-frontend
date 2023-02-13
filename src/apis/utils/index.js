@@ -6,12 +6,13 @@ const instance = axios.create({
   timeout: 1000,
 });
 
-const accessToken = localStorage.getItem('access_token');
-
 // 요청 인터셉터 추가하기
 instance.interceptors.request.use(
   function (config) {
-    if (accessToken) config.headers['Authorization'] = `Bearer ${accessToken}`;
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
 
     return config;
   },
