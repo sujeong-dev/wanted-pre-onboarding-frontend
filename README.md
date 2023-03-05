@@ -110,5 +110,5 @@ instance.interceptors.response.use(
 export default instance;
 ```
 > api호출 시 범용적으로 사용되는 axios를 사용하기로 하였고 `반복되는 api호출을 어떻게하면 중복하지 않고 한번에 처리할 수 있을까?` 고민하다가 axios instance, interceptor에 대해 알게되었다.
-`create()`를 통해 instance를 생성하고 interceptor로 요청과 응답값을 가로채어 토큰값이 필요한 경우에만 헤더에 토큰값을 추가하여 요청하고 응답시에 
+`create()`를 통해 instance를 생성하고 interceptor로 요청과 응답값을 가로채어 토큰값이 필요한 경우에만 헤더에 토큰값을 추가하여 요청하고 응답시에 에러메세지를 받아 alert로 보여주게 하였다.
 
