@@ -68,3 +68,47 @@ $ npm start
   - 수정모드에서는 TODO의 우측에 제출버튼과 취소버튼이 표시
   - 제출버튼을 누르면 수정한 내용을 제출해서 내용이 업데이트
   - 취소버튼을 누르면 수정한 내용을 초기화 하고, 수정모드를 비활성화
+  
+ <br />
+ 
+ ## ⭐️ 인상깊은 코드
+ ```jsx
+ import axios from 'axios';
+
+const instance = axios.create({
+  baseURL: process.env.REACT_APP_API,
+  headers: { 'Content-Type': 'application/json;charset=utf-8' },
+  timeout: 1000,
+});
+
+// 요청 인터셉터 추가하기
+instance.interceptors.request.use(
+  function (config) {
+    const accessToken = localStorage.getItem('access_token');
+    if (accessToken) {
+      config.headers['Authorization'] = `Bearer ${accessToken}`;
+    }
+
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
+// 응답 인터셉터 추가하기
+instance.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  function (error) {
+    window.alert(error.response.data.message);
+    return Promise.reject(error);
+  }
+);
+
+export default instance;
+```
+> api호출 시 범용적으로 사용되는 axios를 사용하기로 하였고 `반복되는 api호출을 어떻게하면 중복하지 않고 한번에 처리할 수 있을까?` 고민하다가 axios instance, interceptor에 대해 알게되었다.
+`create()`를 통해 instance를 생성하고 interceptor로 요청과 응답값을 가로채어 토큰값이 필요한 경우에만 헤더에 토큰값을 추가하여 요청하고 응답시에 
+
